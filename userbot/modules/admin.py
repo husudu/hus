@@ -335,8 +335,7 @@ async def promote(promt):
         return
                              
     try:
-        await promt.client(
-            EditAdminRequest(promt.chat_id, user.id, new_rights, rank))
+        await promt.client(EditAdminRequest(promt.chat_id, user.id, new_rights, rank))
         await promt.edit(LANG['SUCCESS_PROMOTE'])
 
     except:
@@ -349,15 +348,13 @@ async def promote(promt):
             f"İSTİFADƏÇİ: [{user.first_name}](tg://user?id={user.id})\n"
             f"QRUP: {promt.chat.title}(`{promt.chat_id}`)")
 
-@register(sahib=True, pattern="^.my(?: |$)(.*)")
 @register(outgoing=True, pattern="^.propromote(?: |$)(.*)")
-async def propromote(propromote):
-    chat = await propromote.get_chat()
+async def promote(ppromt):
+    chat = await ppromt.get_chat()
     admin = chat.admin_rights
     creator = chat.creator
     if not admin and not creator:
-        await propromote.delete()
-        ppromote = await propromote.client.send_message(chat.id, NO_ADMIN)
+        await ppromt.edit(NO_ADMIN)
         return
     new_rights = ChatAdminRights(add_admins=True,
                                  invite_users=True,
@@ -367,26 +364,26 @@ async def propromote(propromote):
                                  pin_messages=True,
                                  manage_call=True)
     try:
-        await ppromote.edit(LANG['PROMOTING'])
+        await ppromt.edit(LANG['PROMOTING'])
     except:
-        await propromote.reply(LANG['PROMOTING'])
-    user, rank = await get_user_from_event(propromote)
+        await ppromt.reply(LANG['PROMOTING'])
+    user, rank = await get_user_from_event(ppromt)
     if not rank:
         rank = "PRO İdarəçi"
     if user:
         pass
     else:
-        return
+        return                   
     try:
-        await propromote.client(EditAdminRequest(propromote.chat_id, user.id, new_rights, rank))
-        await ppromote.edit(LANG['SUCCESS_PROPROMOTE'])
+        await ppromt.client(EditAdminRequest(ppromt.chat_id, user.id, new_rights, rank))
+        await ppromt.edit(LANG['SUCCESS_PROPROMOTE'])
     except:
-        await ppromote.edit(NO_PERM)
+        await ppromt.edit(NO_PERM)
         return
     if BOTLOG:
-        await propromote.client.send_message(
+        await ppromt.client.send_message(
             BOTLOG_CHATID, "#PRO_İDARƏÇİ_ETMƏK\n"
-            f"İSTİFADƏÇİ: [{user.first_name}](tg://user?id={user.id})\nQRUP: {propromote.chat.title}(`{propromote.chat_id}`)")
+            f"İSTİFADƏÇİ: [{user.first_name}](tg://user?id={user.id})\nQRUP: {ppromt.chat.title}(`{ppromt.chat_id}`)")
 
 
 @register(outgoing=True, pattern="^.demote(?: |$)(.*)")
