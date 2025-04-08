@@ -6,7 +6,7 @@ from telethon.errors.rpcerrorlist import PhoneNumberInvalidError
 from . import BRAIN_CHECKER, LOGS, bot, PLUGIN_ID, BREND_VERSION, BOT_TOKEN, BOTLOG_CHATID
 from .modules import ALL_MODULES
 import userbot.modules.sql_helper.mesaj_sql as MSJ_SQL
-from userbot.helpers import brendautobot, autopilot
+#from userbot.helpers import brendautobot, autopilot
 from random import choice
 
 AFKSTR = [
@@ -130,9 +130,9 @@ if len(argv) not in (1, 3, 4):
     bot.disconnect()
 else:
 """
-loop = asyncio.get_event_loop()
- if not BOTLOG_CHATID:
-     loop.run_until_complete(autopilot())
- if not BOT_TOKEN:
-     loop.run_until_complete(brendautobot())
+#loop = asyncio.get_event_loop()
+#if not BOTLOG_CHATID:
+#    loop.run_until_complete(autopilot())
+#if not BOT_TOKEN:
+#    loop.run_until_complete(brendautobot())
 bot.run_until_disconnected()
