@@ -164,6 +164,31 @@ async def restart(event):
         pass
     execl(sys.executable, sys.executable, *sys.argv)
 
+@register(support=True, pattern="^.brestart$")
+async def balive(event):
+    if event.is_reply:
+        cavab = await event.get_reply_message()
+        brend = await event.client.get_entity(cavab.from_id)
+        if brend.id == SAHIB:
+            if SAHIB not in WHITELIST:
+                await event.reply(LANG['RESTARTING'])
+                try:
+                    await event.client.disconnect()
+                except:
+                    pass
+                execl(sys.executable, sys.executable, *sys.argv)
+
+@register(support=True, pattern="^.srestart$")
+async def dalive(event):
+    if SAHIB not in WHITELIST:
+        await event.edit(LANG['RESTARTING'])
+        try:
+            await event.client.disconnect()
+        except:
+            pass
+        execl(sys.executable, sys.executable, *sys.argv)
+                  
+
 
 @register(outgoing=True, pattern="^.repo$")
 async def repo(repo):
@@ -195,3 +220,4 @@ CmdHelp('misc').add_command(
 ).add_command(
     'list', '<gmute/gban>', 'Gban və ya da Gmute elədiyiniz adamları göstərər.'
 ).add()
+
