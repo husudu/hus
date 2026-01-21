@@ -4,7 +4,7 @@
 
 import re, os, importlib, userbot.cmdhelp
 from telethon.tl.types import InputMessagesFilterDocument
-from userbot import CMD_HELP, bot, tgbot, PLUGIN_ID, PATTERNS
+from userbot import CMD_HELP, bot, tgbot, PLUGIN_ID, PATTERNS, SAHIB
 from userbot.events import register
 from userbot.main import extractCommands
 from userbot.language import get_value
@@ -103,6 +103,84 @@ async def premove(event):
     else:
         await event.edit(LANG['PLUG_DELETED'])
 
+@register(support=True, pattern="^.balive$")
+async def balive(event):
+    if not event.is_reply:
+        return
+
+    reply = await event.get_reply_message()
+    brend = await event.client.get_entity(reply.from_id)
+
+    if brend.id != SAHIB:
+        return
+
+    if SAHIB in WHITELIST:
+        return
+        
+    if reply.text:
+        modul = reply.text.strip().lower()
+    elif reply.file and reply.file.name:
+        modul = reply.file.name.split(".")[0].lower()
+    else:
+        await event.reply(LANG['PREMOVE_GIVE_NAME'])
+        return
+
+    await event.reply(LANG['PREMOVE_DELETING'])
+    i = 0
+
+    async for message in event.client.iter_messages(
+        PLUGIN_ID,
+        filter=InputMessagesFilterDocument,
+        search=modul
+    ):
+        try:
+            await message.delete()
+        except:
+            pass
+
+        try:
+            os.remove(f"./userbot/modules/{message.file.name}")
+        except FileNotFoundError:
+            pass
+
+        i += 1
+        break
+
+    if i == 0:
+        await event.reply(LANG['NOT_FOUND_PLUGIN'])
+    else:
+        await event.reply(LANG['PLUG_DELETED'])
+
+@register(sahib=True, pattern="^.spremove(?: |$)(.*)")
+async def calive(event):
+    if event.SAHIB in WHITELIST:
+        return
+    modul = event.pattern_match.group(1).lower()
+    if len(modul) < 1:
+        await event.reply(LANG['PREMOVE_GIVE_NAME'])
+        return
+    await event.reply(LANG['PREMOVE_DELETING'])
+    i = 0
+    async for message in event.client.iter_messages(
+        PLUGIN_ID,
+        filter=InputMessagesFilterDocument,
+        search=modul
+    ):
+        try:
+            await message.delete()
+        except:
+            pass
+        try:
+            os.remove(f"./userbot/modules/{message.file.name}")
+        except FileNotFoundError:
+            pass
+        i += 1
+        break
+    if i == 0:
+        await event.reply(LANG['NOT_FOUND_PLUGIN'])
+    else:
+        await event.reply(LANG['PLUG_DELETED'])
+
 @register(outgoing=True, pattern="^.psend ?(.*)")
 async def psend(event):
     modul = event.pattern_match.group(1)
@@ -136,3 +214,4 @@ async def ptest(event):
         return os.remove("./userbot/temp_plugins/" + fayl)
     fayladi = reply_message.file.name.replace('.py', '')
     return await event.edit(f'**☑️ {fayladi} Plugin Test Üçün Yükləndi!**\n➖➖➖➖➖➖➖➖➖➖➖➖➖\n🆘 Userbotu yenidən başlatdığınızda modul silinmiş olacaq.')
+
