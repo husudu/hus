@@ -25,7 +25,7 @@ else:
 basicConfig(format="%(asctime)s - @BrendUserBot - %(levelname)s - %(message)s",  level=INFO)
 LOGS = getLogger(__name__)
 
-BREND_VERSION = "V6.9.3"
+BREND_VERSION = "V6.9.4"
 API_ID = int(os.environ.get("API_ID", "1558926"))
 API_HASH = os.environ.get("API_HASH", "69c4c16e17e9f637818f2cfce8f9bce5")
 BOT_TOKEN = os.environ.get("BOT_TOKEN", None)
@@ -236,3 +236,4 @@ with bot:
     except:
         LOGS.info("BOTLOG_CHATID yeniləməyiniz tövsiyyə olunur.")
         quit(1)
+
