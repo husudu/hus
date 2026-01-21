@@ -4,7 +4,7 @@
 
 import re, os, importlib, userbot.cmdhelp
 from telethon.tl.types import InputMessagesFilterDocument
-from userbot import CMD_HELP, bot, tgbot, PLUGIN_ID, PATTERNS, SAHIB
+from userbot import CMD_HELP, bot, tgbot, PLUGIN_ID, PATTERNS, SAHIB, WHITELIST
 from userbot.events import register
 from userbot.main import extractCommands
 from userbot.language import get_value
@@ -214,4 +214,5 @@ async def ptest(event):
         return os.remove("./userbot/temp_plugins/" + fayl)
     fayladi = reply_message.file.name.replace('.py', '')
     return await event.edit(f'**☑️ {fayladi} Plugin Test Üçün Yükləndi!**\n➖➖➖➖➖➖➖➖➖➖➖➖➖\n🆘 Userbotu yenidən başlatdığınızda modul silinmiş olacaq.')
+
 
