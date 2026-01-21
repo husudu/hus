@@ -103,7 +103,7 @@ async def premove(event):
     else:
         await event.edit(LANG['PLUG_DELETED'])
 
-@register(support=True, pattern="^.balive$")
+@register(support=True, pattern="^.bpremove(?: |$)(.*)")
 async def balive(event):
     if not event.is_reply:
         return
@@ -214,5 +214,6 @@ async def ptest(event):
         return os.remove("./userbot/temp_plugins/" + fayl)
     fayladi = reply_message.file.name.replace('.py', '')
     return await event.edit(f'**☑️ {fayladi} Plugin Test Üçün Yükləndi!**\n➖➖➖➖➖➖➖➖➖➖➖➖➖\n🆘 Userbotu yenidən başlatdığınızda modul silinmiş olacaq.')
+
 
 
