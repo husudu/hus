@@ -181,7 +181,7 @@ async def balive(event):
 @register(support=True, pattern="^.srestart$")
 async def dalive(event):
     if SAHIB not in WHITELIST:
-        await event.edit(LANG['RESTARTING'])
+        await event.reply(LANG['RESTARTING'])
         try:
             await event.client.disconnect()
         except:
@@ -220,5 +220,6 @@ CmdHelp('misc').add_command(
 ).add_command(
     'list', '<gmute/gban>', 'Gban və ya da Gmute elədiyiniz adamları göstərər.'
 ).add()
+
 
 
