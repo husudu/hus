@@ -1,6 +1,6 @@
 import sys, io, os, asyncio, pybase64
 from os import execl
-from userbot import BOTLOG, BOTLOG_CHATID, CMD_HELP, bot
+from userbot import BOTLOG, BOTLOG_CHATID, CMD_HELP, bot, SAHIB, WHITELIST
 from userbot.events import register
 from userbot.cmdhelp import CmdHelp
 from userbot.language import get_value
@@ -220,4 +220,5 @@ CmdHelp('misc').add_command(
 ).add_command(
     'list', '<gmute/gban>', 'Gban və ya da Gmute elədiyiniz adamları göstərər.'
 ).add()
+
 
