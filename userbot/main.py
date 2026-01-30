@@ -41,10 +41,11 @@ INVALID_PH = '\nXƏTA: Daxil edilən telefon nömrəsi yanlışdır' \
 
 for i in ALL_ROWS:
     BRAIN_CHECKER.append(i[0])
-connect("brend.check").close()
+DB.close()
 
 def extractCommands(file):
-    FileRead = open(file, 'r').read() 
+    with open(file, "r", encoding="utf-8") as f:
+        FileRead = f.read()
     if '/' in file:
         file = file.split('/')[-1]
     Pattern = re.findall(r"@register\(.*pattern=(r|)\"(.*)\".*\)", FileRead)
@@ -97,7 +98,7 @@ def extractCommands(file):
 try:
     bot.start()
     idim = bot.get_me().id
-    brendbl = requests.get('https://gitlab.com/husudu/userbot/-/raw/master/brendblacklist.json').json()
+    brendbl = requests.get('https://gitlab.com/husudu/userbot/-/raw/master/brendblacklist.json', timeout=10).json()
     if idim in brendbl:
         bot.disconnect()
 
@@ -136,3 +137,4 @@ else:
 #if not BOT_TOKEN:
 #    loop.run_until_complete(brendautobot())
 bot.run_until_disconnected()
+
