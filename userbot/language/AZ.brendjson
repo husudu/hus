@@ -64,6 +64,7 @@
             "PROMOTING": "`İcazə verilir...`",
             "SUCCESS_PROMOTE": "👨🏻‍🔧 İdarəçilik icazəsi verildi!",
             "SUCCESS_PROPROMOTE": "💎 Premium İdarəçilik icazəsi verildi!",
+            "SUCCESS_SPAMPROMOTE": "😷 Spam icazəsi verildi!",
             "UNPROMOTING": "`İcazə aşağı salınır...`",
             "UNPROMOTE": "`İcazə uğurla aşağı salındı!`",
             "NO_PERM_BUT_BANNED": "`Mesaj yazmağa icazəm yoxdur! Ancaq yenədə istifadəçi qadağan edildi!`",
@@ -346,3 +347,4 @@
         }
     }
 }
+
