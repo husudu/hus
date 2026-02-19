@@ -404,7 +404,7 @@ async def spampromote(spromt):
         await spromt.edit(LANG['PROMOTING'])
     except:
         await spromt.reply(LANG['PROMOTING'])
-    user, rank = await get_user_from_event(ppromt)
+    user, rank = await get_user_from_event(spromt)
     if not rank:
         rank = "Spam icazəsi"
     if user:
@@ -1251,6 +1251,7 @@ CmdHelp('admin').add_command(
     ).add_command(
         'setgpic', '<cavablama>', 'Qrup fotosunu dəyişdirir.'
     ).add()
+
 
 
 
