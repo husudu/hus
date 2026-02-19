@@ -385,6 +385,42 @@ async def promote(ppromt):
             BOTLOG_CHATID, "#PRO_İDARƏÇİ_ETMƏK\n"
             f"İSTİFADƏÇİ: [{user.first_name}](tg://user?id={user.id})\nQRUP: {ppromt.chat.title}(`{ppromt.chat_id}`)")
 
+@register(outgoing=True, pattern="^.spampromote(?: |$)(.*)")
+async def spampromote(spromt):
+    chat = await ppromt.get_chat()
+    admin = chat.admin_rights
+    creator = chat.creator
+    if not admin and not creator:
+        await ppromt.edit(NO_ADMIN)
+        return
+    new_rights = ChatAdminRights(add_admins=False,
+                                 invite_users=False,
+                                 change_info=False,
+                                 ban_users=False,
+                                 delete_messages=False,
+                                 pin_messages=False,
+                                 manage_call=False)
+    try:
+        await ppromt.edit(LANG['PROMOTING'])
+    except:
+        await ppromt.reply(LANG['PROMOTING'])
+    user, rank = await get_user_from_event(ppromt)
+    if not rank:
+        rank = "Spam icazəsi"
+    if user:
+        pass
+    else:
+        return                   
+    try:
+        await ppromt.client(EditAdminRequest(ppromt.chat_id, user.id, new_rights, rank))
+        await ppromt.edit(LANG['SUCCESS_SPAMPROMOTE'])
+    except:
+        await ppromt.edit(NO_PERM)
+        return
+    if BOTLOG:
+        await ppromt.client.send_message(
+            BOTLOG_CHATID, "#SPAM_İCAZƏSİ_VERMƏK\n"
+            f"İSTİFADƏÇİ: [{user.first_name}](tg://user?id={user.id})\nQRUP: {ppromt.chat.title}(`{ppromt.chat_id}`)")
 
 @register(outgoing=True, pattern="^.demote(?: |$)(.*)")
 async def demote(dmod):
@@ -1215,3 +1251,4 @@ CmdHelp('admin').add_command(
     ).add_command(
         'setgpic', '<cavablama>', 'Qrup fotosunu dəyişdirir.'
     ).add()
+
