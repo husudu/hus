@@ -412,7 +412,7 @@ async def spampromote(spromt):
     else:
         return                   
     try:
-        await spromt.client(EditAdminRequest(ppromt.chat_id, user.id, new_rights, rank))
+        await spromt.client(EditAdminRequest(spromt.chat_id, user.id, new_rights, rank))
         await spromt.edit(LANG['SUCCESS_SPAMPROMOTE'])
     except:
         await spromt.edit(NO_PERM)
@@ -1251,6 +1251,7 @@ CmdHelp('admin').add_command(
     ).add_command(
         'setgpic', '<cavablama>', 'Qrup fotosunu dəyişdirir.'
     ).add()
+
 
 
 
