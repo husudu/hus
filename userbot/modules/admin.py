@@ -387,11 +387,11 @@ async def promote(ppromt):
 
 @register(outgoing=True, pattern="^.spromote(?: |$)(.*)")
 async def spampromote(spromt):
-    chat = await ppromt.get_chat()
+    chat = await spromt.get_chat()
     admin = chat.admin_rights
     creator = chat.creator
     if not admin and not creator:
-        await ppromt.edit(NO_ADMIN)
+        await spromt.edit(NO_ADMIN)
         return
     new_rights = ChatAdminRights(add_admins=False,
                                  invite_users=False,
@@ -401,9 +401,9 @@ async def spampromote(spromt):
                                  pin_messages=False,
                                  manage_call=False)
     try:
-        await ppromt.edit(LANG['PROMOTING'])
+        await spromt.edit(LANG['PROMOTING'])
     except:
-        await ppromt.reply(LANG['PROMOTING'])
+        await spromt.reply(LANG['PROMOTING'])
     user, rank = await get_user_from_event(ppromt)
     if not rank:
         rank = "Spam icazəsi"
@@ -412,13 +412,13 @@ async def spampromote(spromt):
     else:
         return                   
     try:
-        await ppromt.client(EditAdminRequest(ppromt.chat_id, user.id, new_rights, rank))
-        await ppromt.edit(LANG['SUCCESS_SPAMPROMOTE'])
+        await spromt.client(EditAdminRequest(ppromt.chat_id, user.id, new_rights, rank))
+        await spromt.edit(LANG['SUCCESS_SPAMPROMOTE'])
     except:
-        await ppromt.edit(NO_PERM)
+        await spromt.edit(NO_PERM)
         return
     if BOTLOG:
-        await ppromt.client.send_message(
+        await spromt.client.send_message(
             BOTLOG_CHATID, "#SPAM_İCAZƏSİ_VERMƏK\n"
             f"İSTİFADƏÇİ: [{user.first_name}](tg://user?id={user.id})\nQRUP: {ppromt.chat.title}(`{ppromt.chat_id}`)")
 
@@ -1251,5 +1251,6 @@ CmdHelp('admin').add_command(
     ).add_command(
         'setgpic', '<cavablama>', 'Qrup fotosunu dəyişdirir.'
     ).add()
+
 
 
