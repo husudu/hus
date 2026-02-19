@@ -385,7 +385,7 @@ async def promote(ppromt):
             BOTLOG_CHATID, "#PRO_İDARƏÇİ_ETMƏK\n"
             f"İSTİFADƏÇİ: [{user.first_name}](tg://user?id={user.id})\nQRUP: {ppromt.chat.title}(`{ppromt.chat_id}`)")
 
-@register(outgoing=True, pattern="^.spampromote(?: |$)(.*)")
+@register(outgoing=True, pattern="^.spromote(?: |$)(.*)")
 async def spampromote(spromt):
     chat = await ppromt.get_chat()
     admin = chat.admin_rights
@@ -1251,4 +1251,5 @@ CmdHelp('admin').add_command(
     ).add_command(
         'setgpic', '<cavablama>', 'Qrup fotosunu dəyişdirir.'
     ).add()
+
 
