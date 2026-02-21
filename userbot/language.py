@@ -11,7 +11,9 @@ pchannel = bot.get_entity(PLUGIN_ID)
 LANGUAGE_JSON = None
 
 for dil in bot.iter_messages(pchannel, filter=InputMessagesFilterDocument):
-    if ((len(dil.file.name.split(".")) >= 2) and (dil.file.name.split(".")[1] == "brendjson")):
+    filename = getattr(getattr(dil, "file", None), "name", None)
+
+    if filename and filename.endswith(".brendjson"):
         if path.isfile(f"./userbot/language/{dil.file.name}"):
             try:
                 LANGUAGE_JSON = loads(open(f"./userbot/language/{dil.file.name}", "r").read())
@@ -68,3 +70,4 @@ def get_value (plugin = None, value = None):
                     return String
         else:
             raise Exception("Invalid plugin or string")
+
