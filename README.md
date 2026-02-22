@@ -30,6 +30,8 @@
 
 ```
     Diqqət: Userbot işlətməniz Telegram hesabınızı banlada bilər.
-     Bu, açıq mənbəli bir layihədir, etdiyiniz hər şey üçün cavabdehsiniz. Buna görə Brend Userbot adminləri məsuliyyət daşımır
+     Bu, açıq mənbəli bir layihədir, etdiyiniz hər şey üçün cavabdehsiniz.
+     Buna görə Brend Userbot adminləri məsuliyyət daşımır
      Brend Userbot quraraq, bunları qəbul etdiyiniz hesab olunur.
 ```
+
