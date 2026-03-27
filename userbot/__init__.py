@@ -52,6 +52,9 @@ PATTERNS = os.environ.get("PATTERNS", ".")
 
 CMD_HELP = {}
 CMD_HELP_BOT = {}
+# SilgiUb pluginləri üçün
+SILGI_VERSION = BREND_VERSION
+SILGI_USER = "Salam Səmayə"
 
 LANGUAGE = os.environ.get("LANGUAGE", "AZ").upper()
 if not LANGUAGE in ["AZ"]:
@@ -90,7 +93,7 @@ async def check_botlog_chatid():
     if entity.default_banned_rights.send_messages:
         LOGS.info("Hesabınızla BOTLOG_CHATID qrupuna mesaj göndərmək olmurş/nQrup ID-sini düzgün yazdığınızdan əmin olun.")
         quit(1)
-        
+
 if not BOT_TOKEN == None:
     tgbot = TelegramClient("Brend_Bot",api_id=API_ID, api_hash=API_HASH).start(bot_token=BOT_TOKEN)
 else:
