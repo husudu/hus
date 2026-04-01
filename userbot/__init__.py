@@ -59,7 +59,7 @@ SILGI_USER = "Salam Səmayə"
 LANGUAGE = os.environ.get("LANGUAGE", "AZ").upper()
 if not LANGUAGE in ["AZ"]:
     LOGS.info("Naməlum bir dil yazdınız. Buna görə AZ istifadə olunur.")
-    LANGUAGE = "DEFAULT"
+    LANGUAGE = "AZ"
 
 WHITELIST = get('https://gitlab.com/husudu/userbot/-/raw/master/whitelist.json').json()
 SUPPORT = get('https://gitlab.com/husudu/userbot/-/raw/master/support.json').json()
