@@ -151,7 +151,7 @@ async def fayl(event):
     await asyncio.sleep(1)
     await a.edit(f"📥 {input_str} faylı gətirilir")
     await asyncio.sleep(1)
-    await event.client.send_file(event.chat_id, input_str, thumb = "userbot/modules/sql_helper/resources/Brend_Logo.jpg", caption = caption)
+    await event.client.send_file(event.chat_id, input_str, thumb = "userbot/modules/sql_helper/resources/Brend_Logo.png", caption = caption)
     await a.delete()
     os.remove(input_str)
 
