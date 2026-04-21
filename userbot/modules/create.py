@@ -13,7 +13,7 @@ async def creategc(yarat):
     tip = yarat.pattern_match.group(1)
     ad = yarat.pattern_match.group(2)
     if tip == "g":
-       try:
+        try:
             result = await yarat.client(functions.messages.CreateChatRequest(users=["@BrendRobot"], title=ad))
             qrup_id = result.chat.id
             await yarat.client(functions.messages.DeleteChatUserRequest(chat_id=qrup_id, user_id="@BrendRobot"))
