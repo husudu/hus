@@ -91,7 +91,7 @@ def register(**args):
 
                     if LOGSPAMMER:
                         await check.client.send_message(check.chat_id, f"⚡ **Brend Userbot Xəta Bildirişi.**\n⚠️ __**Xəta Logları Botlog qrupunda saxlanılır.**__\n\n❌ Xəta mətni: ```{xeta}```")
-                    await check.client.send_file(send_to, "Brend.log", thumb = "userbot/modules/sql_helper/resources/Brend_Logo.jpg", caption=text)
+                    await check.client.send_file(send_to, "Brend.log", thumb = "userbot/modules/sql_helper/resources/Brend_Logo.png", caption=text)
                     remove("Brend.log")
             else:
                 pass
