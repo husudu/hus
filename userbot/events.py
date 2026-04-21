@@ -76,21 +76,21 @@ def register(**args):
                     xeta = str(sys.exc_info()[1])
                     link = "[⚡ Brend Support](https://t.me/BrendSup)"
                     if len(brendtext)<10:
-                        text = f"⚠️ Əmr: {brendtext}\n\nℹ️ Bu LOGu {link}a göndərərək xətanı öyrənin."
+                        text = f"⚙️ Əmr: {brendtext}\n\n💁🏻‍♂️ Bu LOGu {link}a göndərərək xətanı öyrənin."
                     else:
-                        text = f"ℹ️ Bu LOGu {link}a göndərərək xətanı öyrənin."
+                        text = f"💁🏻‍♂️ Bu LOGu {link}a göndərərək xətanı öyrənin."
                     
                     ftext = f"Tarix: {date}\nChat ID: {check.chat_id}"
-                    ftext += f"\n\n\nProblem səbəbi:\n{check.text}"
-                    ftext += f"\n\nProsesin Gedişi:\n{format_exc()}"
-                    ftext += f"\n\nKömək mətni:\n{sys.exc_info()[1]}"
+                    ftext += f"\n\n\nXəta səbəbi:\n{check.text}"
+                    ftext += f"\n\nLog sətiri:\n{format_exc()}"
+                    ftext += f"\n\nXəta izahı:\n{sys.exc_info()[1]}"
 
                     file = open("Brend.log", "w+")
                     file.write(ftext)
                     file.close()
 
                     if LOGSPAMMER:
-                        await check.client.send_message(check.chat_id, f"⚡ **Brend Userbotda xəta baş verdi.**\n⚠️ __**Xəta Logları Botlog qrupunda saxlanılır.**__\n\n❌ Xəta mətni: ```{xeta}```")
+                        await check.client.send_message(check.chat_id, f"⚡ **Brend Userbot Xəta Bildirişi.**\n⚠️ __**Xəta Logları Botlog qrupunda saxlanılır.**__\n\n❌ Xəta mətni: ```{xeta}```")
                     await check.client.send_file(send_to, "Brend.log", thumb = "userbot/modules/sql_helper/resources/Brend_Logo.jpg", caption=text)
                     remove("Brend.log")
             else:
