@@ -30,7 +30,7 @@ async def creategc(event):
             if not chat_id:
                 return await event.edit("❌ Qrup ID tapılmadı.")
             invite = await event.client(functions.messages.ExportChatInviteRequest(peer=chat_id))
-            await event.edit(f"[⚡ ʙʀᴇɴᴅ ᴜꜱᴇʀʙᴏᴛ](https://t.me/brenduserbot) vasitəsilə **{ad}** qrupu yaradıldı.\n\n", f"🔘 [{ad}]({invite.link}) qrupuna qoşul.")
+            await event.edit(f"[⚡ ʙʀᴇɴᴅ ᴜꜱᴇʀʙᴏᴛ](https://t.me/brenduserbot) vasitəsilə **{ad}** qrupu yaradıldı.\n\n🔘 [{ad}]({invite.link}) qrupuna qoşul.")
         except Exception as e:
             await event.edit(f"❌ Xəta:\n`{e}`")
     elif tip == "c":
@@ -39,7 +39,7 @@ async def creategc(event):
                 functions.channels.CreateChannelRequest(title=ad, about="⚡ Brend Userbot tərəfindən yaradıldı"))
             channel = result.chats[0]
             invite = await event.client(functions.messages.ExportChatInviteRequest(peer=channel))
-            await event.edit(f"[⚡ ʙʀᴇɴᴅ ᴜꜱᴇʀʙᴏᴛ](https://t.me/brenduserbot) vasitəsilə **{ad}** kanalı yaradıldı.\n\n", f"🔘 [{ad}]({invite.link}) kanalına keç.")
+            await event.edit(f"[⚡ ʙʀᴇɴᴅ ᴜꜱᴇʀʙᴏᴛ](https://t.me/brenduserbot) vasitəsilə **{ad}** kanalı yaradıldı.\n\n🔘 [{ad}]({invite.link}) kanalına keç.")
         except Exception as e:
             await event.edit(f"❌ Xəta:\n`{e}`")
 
