@@ -1,35 +1,46 @@
 # Kopyalama Peysərin Balası
 # Tam olaraq sıfırdan yığılması Brend Userbot-a məxsusdur!
 
-from telethon.tl import functions
+from telethon.tl import functions, types
 from userbot.events import register
 from userbot.cmdhelp import CmdHelp
 
+
+
 @register(outgoing=True, pattern="^.yarat (g|c)(?: |$)(.*)")
 @register(outgoing=True, pattern="^.create (g|c)(?: |$)(.*)")
-async def creategc(yarat):
-    if yarat.fwd_from:
+async def creategc(event):
+    if event.fwd_from:
         return
-    tip = yarat.pattern_match.group(1)
-    ad = yarat.pattern_match.group(2)
+
+    tip = event.pattern_match.group(1)
+    ad = event.pattern_match.group(2)
+
+    if not ad:
+        return await event.edit("❌ Ad daxil etməlisən.")
+
     if tip == "g":
         try:
-            link = await yarat.client(functions.messages.CreateChatRequest(users=["@BrendRobot"], title=ad))
-            qrup_id = link.chats[0].id
-            await yarat.client(functions.messages.DeleteChatUserRequest(chat_id=qrup_id, user_id="@BrendRobot"))
-            link = await yarat.client(functions.messages.ExportChatInviteRequest(peer=qrup_id))
-            await yarat.edit(f"[⚡ ʙʀᴇɴᴅ ᴜꜱᴇʀʙᴏᴛ](https://t.me/brenduserbot) vasitəsilə {ad} qrupu yaradıldı.\n\n🔘 Toxunaraq [{ad}]({link.link}) qrupuna qoşul.")
+            bot = await event.client.get_entity("@BrendRobot")
+            result = await event.client(functions.messages.CreateChatRequest(users=[bot], title=ad))
+            chat_id = None
+            for update in result.updates:
+                if isinstance(update, types.UpdateNewMessage):
+                    chat_id = update.message.peer_id.chat_id
+            if not chat_id:
+                return await event.edit("❌ Qrup ID tapılmadı.")
+            invite = await event.client(functions.messages.ExportChatInviteRequest(peer=chat_id))
+            await event.edit(f"[⚡ ʙʀᴇɴᴅ ᴜꜱᴇʀʙᴏᴛ](https://t.me/brenduserbot) vasitəsilə **{ad}** qrupu yaradıldı.\n\n", f"🔘 [{ad}]({invite.link}) qrupuna qoşul.")
         except Exception as e:
-            await yarat.edit(f"❌ Xəta baş verdi: {e}")
+            await event.edit(f"❌ Xəta:\n`{e}`")
     elif tip == "c":
         try:
-            link = await yarat.client(functions.channels.CreateChannelRequest(title=ad, about="⚡ Brend Userbot tərəfindən yaradıldı"))
-            kanal_id = link.chats[0].id
-            link = await yarat.client(functions.messages.ExportChatInviteRequest(peer=kanal_id))
-            await yarat.edit(f"[⚡ ʙʀᴇɴᴅ ᴜꜱᴇʀʙᴏᴛ](https://t.me/brenduserbot) vasitəsilə {ad} kanalı yaradıldı.\n\n🔘 Toxunaraq [{ad}]({link.link}) kanalına keçid et.")
+            result = await event.client(
+                functions.channels.CreateChannelRequest(title=ad, about="⚡ Brend Userbot tərəfindən yaradıldı"))
+            channel = result.chats[0]
+            invite = await event.client(functions.messages.ExportChatInviteRequest(peer=channel))
+            await event.edit(f"[⚡ ʙʀᴇɴᴅ ᴜꜱᴇʀʙᴏᴛ](https://t.me/brenduserbot) vasitəsilə **{ad}** kanalı yaradıldı.\n\n", f"🔘 [{ad}]({invite.link}) kanalına keç.")
         except Exception as e:
-            await yarat.edit(f"❌ Xəta Baş verdi: {e}")
-    else:
-        await yarat.edit("Bu modulu işlətmə qaydasını bilmək üçün `.brend create` yazın")
+            await event.edit(f"❌ Xəta:\n`{e}`")
 
 CmdHelp('create').add_command('create', '<g/c> <ad>', 'Cəmi bir əmrlə qrup və ya kanal yaradın qrup yaratmaq üçün .yarat q <ad> , kanal yaratmaq üçün .yarat k <ad> yazın.').add()
