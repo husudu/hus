@@ -22,7 +22,7 @@ async def creategc(yarat):
             await yarat.edit(f"[⚡ ʙʀᴇɴᴅ ᴜꜱᴇʀʙᴏᴛ](https://t.me/brenduserbot) {ad} qrupunu yaratdı.\n\n🔘 [{ad}]({link}) qrupuna qoşul.")
         except Exception as e:
              await yarat.edit(f"❌ Xəta baş verdi: {e}")
-    if tip == "c":
+    elif tip == "c":
         try:
             link = await yarat.client(functions.channels.CreateChannelRequest(title=ad, about="⚡ Brend Userbot tərəfindən yaradıldı"))
             kanal_id = link.chats[0].id
