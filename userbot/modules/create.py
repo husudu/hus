@@ -14,8 +14,8 @@ async def creategc(yarat):
     ad = yarat.pattern_match.group(2)
     if tip == "g":
         try:
-            result = await yarat.client(functions.messages.CreateChatRequest(users=["@BrendRobot"], title=ad))
-            result.chats[0].id #qrup_id = result.updates[0].chat_id
+            result = await yarat.client(functions.messages.CreateChatRequest(users=["@BrendRobot"], title=ad, ttl_period=42))
+            qrup_id = result.chats[0].id #qrup_id = result.updates[0].chat_id
             await yarat.client(functions.messages.DeleteChatUserRequest(chat_id=qrup_id, user_id="@BrendRobot"))
             invite = await yarat.client(functions.messages.ExportChatInviteRequest(peer=qrup_id))
             link = invite.link
