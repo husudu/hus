@@ -24,7 +24,7 @@ async def auto(event):
     elif metod == "bio":
         DMY = time.strftime("%d.%m.%Y")
         HM = time.strftime("%H:%M")
-        Bio = LANG['BIO'].format(tarih=DMY, saat=HM) + LANG['NICK'] 
+        Bio = LANG['BIO'].format(tarix=DMY, saat=HM) + LANG['NICK'] 
         await event.client(functions.account.UpdateProfileRequest(about=Bio))
     await event.edit(LANG['SETTED'] % metod)
     ASYNC_POOL.append(metod)
