@@ -14,12 +14,19 @@ async def creategc(yarat):
     ad = yarat.pattern_match.group(2)
     if tip == "g":
         try:
-            result = await yarat.client(functions.messages.CreateChatRequest(users=["@BrendRobot"], title=ad))
-            qrup_id = result.chat.id
-            await yarat.client(functions.messages.DeleteChatUserRequest(chat_id=qrup_id, user_id="@BrendRobot"))
-            invite = await yarat.client(functions.messages.ExportChatInviteRequest(peer=qrup_id))
-            link = invite.link
-            await yarat.edit(f"[⚡ ʙʀᴇɴᴅ ᴜꜱᴇʀʙᴏᴛ](https://t.me/brenduserbot) {ad} qrupunu yaratdı.\n\n🔘 [{ad}]({link}) qrupuna qoşul.")
+            result = await event.client(
+                functions.messages.CreateChatRequest(
+                    users=["@BrendRobot"],
+                    title=ad,
+                )
+            )
+            qrup_id = result.chats[0].id
+            link = await event.client(
+                functions.messages.ExportChatInviteRequest(
+                    peer=qrup_id,
+                )
+            )
+            await yarat.edit(f"[⚡ ʙʀᴇɴᴅ ᴜꜱᴇʀʙᴏᴛ](https://t.me/brenduserbot) {ad} qrupunu yaratdı.\n\n🔘 {link.link} qrup linki.")
         except Exception as e:
             await yarat.edit(f"❌ Xəta baş verdi: {e}")
     elif tip == "c":
