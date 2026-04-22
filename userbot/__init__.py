@@ -233,7 +233,7 @@ with bot:
             await event.edit(result, file=helplogo, buttons=[custom.Button.inline("👈🏻 Geri", data=f"bilgi[{sehife}]({cmd})")], link_preview=False)
     except Exception as e:
         print(e)
-        LOGS.info(f"Botunuzda inline rejimi deaktivdir./nAktivləşdirmək üçün botunuzda inline rejimini aktivləşdirin./nBunun xaricində bir problem olduğunu düşünürsünüzsə, dəstək qrupumla əlaqə saxlayın. @BrendSUP/n/n{e}")
+        LOGS.info(f"Botunuzda inline rejimi deaktivdir.\nAktivləşdirmək üçün botunuzda inline rejimini aktivləşdirin.\nBunun xaricində bir problem olduğunu düşünürsünüzsə, dəstək qrupumla əlaqə saxlayın. @BrendSUP/n/n{e}")
     try:
         bot.loop.run_until_complete(check_botlog_chatid())
     except:
