@@ -91,7 +91,7 @@ async def check_botlog_chatid():
         return
     entity = await bot.get_entity(BOTLOG_CHATID)
     if entity.default_banned_rights.send_messages:
-        LOGS.info("Hesabınızla BOTLOG_CHATID qrupuna mesaj göndərmək olmurş/nQrup ID-sini düzgün yazdığınızdan əmin olun.")
+        LOGS.info("Hesabınızla BOTLOG_CHATID qrupuna mesaj göndərmək olmur.\nQrup ID-sini düzgün yazdığınızdan əmin olun.")
         quit(1)
 
 if not BOT_TOKEN == None:
